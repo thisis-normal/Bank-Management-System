@@ -72,8 +72,3 @@ public:
         cout << "Balance: " << balance << endl;
     }
 };
-int main()
-{
-    BankSys p;
-    p.display();
-}

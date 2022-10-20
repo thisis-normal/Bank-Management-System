@@ -1,51 +1,79 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 class BankSys
 {
 private:
-    string customerName;
+    string name;
     double balance;
+    int phone;
+    string city;
     string accountNumber;
 
 public:
+    // initialization
     BankSys() {}
-    BankSys(string customerName, double balance, string accountNumber)
+    BankSys(string Hname, double Hbalance, int Hphone, string Hcity, string HaccountNumber)
     {
-        this->customerName = customerName;
-        this->balance = balance;
-        this->accountNumber = accountNumber;
+        this->name = Hname;
+        this->balance = Hbalance;
+        this->phone = Hphone;
+        this->city = Hcity;
+        this->accountNumber = HaccountNumber;
     }
-    // all getter
-    string getCustomerName()
+    // getter
+    string getName()
     {
-        return customerName;
+        return name;
     }
     double getBalance()
     {
         return balance;
     }
+    int getPhone()
+    {
+        return phone;
+    }
+    string getCity()
+    {
+        return city;
+    }
     string getAccountNumber()
     {
         return accountNumber;
     }
-    // all setter
-    void setCustomerName(string customerName)
+    // setter
+    void setname(string name)
     {
-        this->customerName = customerName;
+        this->name = name;
     }
-    void setBalance(double balance)
+    void setbalance(double balance)
     {
         this->balance = balance;
     }
-    void setAccountNumber(string accountNumber)
+    void setphone(int phone)
+    {
+        this->phone = phone;
+    }
+    void setcity(string city)
+    {
+        this->city = city;
+    }
+    void setaccountNumber(string accountNumber)
     {
         this->accountNumber = accountNumber;
     }
-    // all methods
-    virtual void display()
+
+    void display()
     {
-        cout << "Customer Name: " << customerName << endl;
-        cout << "Balance: " << balance << endl;
-        cout << "Account Number: " << accountNumber << endl;
+        cout << "ten tai khoan: " << name << endl;
+        cout << "so tai khoan: " << accountNumber << endl;
+        cout << "thanh pho: " << city << endl;
+        cout << "so dien thoai: " << phone << endl;
+        cout << "so du tai khoan: " << accountNumber << endl;
     }
 };
+int main()
+{
+    BankSys p;
+    p.display();
+}

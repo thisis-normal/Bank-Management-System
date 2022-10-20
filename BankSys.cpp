@@ -41,25 +41,11 @@ public:
     {
         this->accountNumber = accountNumber;
     }
-    // getinfor
-    void setInformation()
-    {
-        cout << "Enter customer name: ";
-        cin >> customerName;
-        cout << "Enter balance: ";
-        cin >> balance;
-        cout << "Enter account number: ";
-        cin.ignore();
-        getline(cin, accountNumber);
-    }
-    void display()
+    // all methods
+    virtual void display()
     {
         cout << "Customer Name: " << customerName << endl;
-        cout << "Account Number: " << accountNumber << endl;
         cout << "Balance: " << balance << endl;
+        cout << "Account Number: " << accountNumber << endl;
     }
 };
-int main()
-{
-    return 0;
-}

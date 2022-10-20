@@ -42,34 +42,34 @@ public:
         return accountNumber;
     }
     // setter
-    void setname(string name)
+    void setName(string name)
     {
         this->name = name;
     }
-    void setbalance(double balance)
+    void setBalance(double balance)
     {
         this->balance = balance;
     }
-    void setphone(int phone)
+    void setPhone(int phone)
     {
         this->phone = phone;
     }
-    void setcity(string city)
+    void setCity(string city)
     {
         this->city = city;
     }
-    void setaccountNumber(string accountNumber)
+    void setAccountNumber(string accountNumber)
     {
         this->accountNumber = accountNumber;
     }
 
     void display()
     {
-        cout << "ten tai khoan: " << name << endl;
-        cout << "so tai khoan: " << accountNumber << endl;
-        cout << "thanh pho: " << city << endl;
-        cout << "so dien thoai: " << phone << endl;
-        cout << "so du tai khoan: " << balance << endl;
+        cout << "Your name: " << name << endl;
+        cout << "Account Number: " << accountNumber << endl;
+        cout << "City: " << city << endl;
+        cout << "Your phone: " << phone << endl;
+        cout << "Balance: " << balance << endl;
     }
 };
 int main()

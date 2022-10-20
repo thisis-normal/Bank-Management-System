@@ -69,7 +69,7 @@ public:
         cout << "so tai khoan: " << accountNumber << endl;
         cout << "thanh pho: " << city << endl;
         cout << "so dien thoai: " << phone << endl;
-        cout << "so du tai khoan: " << accountNumber << endl;
+        cout << "so du tai khoan: " << balance << endl;
     }
 };
 int main()

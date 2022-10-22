@@ -2,11 +2,13 @@
 #include "Access_db.cpp"
 int main()
 {
-    cout << "Sign In To Our Project!" << endl;
+    cout << "Sign Up To Our Project!" << endl;
     AccessControl a1;
     openFile();
-    a1.signUp();
-    a1.validate();
+    // cout << "Set phone: " << endl;
+    // a1.setPhone("3");
+    a1.signIn();
+    a1.validateSignIn();
     saveFile();
     Display();
     return 0;

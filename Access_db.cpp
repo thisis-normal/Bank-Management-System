@@ -6,6 +6,7 @@ void openFile()
     {
         string line;
         int i = 0;
+        int countLine = 0;
         while (getline(file, line))
         {
             // insert data into array, split by comma
@@ -14,6 +15,12 @@ void openFile()
             getline(iss, AccessPass[i], ',');
             getline(iss, AccessRole[i]);
             i++;
+            countLine++;
+        }
+        // read all data from file
+        for (int i = 0; i < countLine; i++)
+        {
+            cout << AccessPhone[i] << " " << AccessPass[i] << " " << AccessRole[i] << endl;
         }
     }
     file.close();

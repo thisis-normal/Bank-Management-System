@@ -5,20 +5,20 @@ class BankSys
 private:
     string name;
     double balance;
-    int phone;
+    string phone;
     string city;
     string accountNumber;
 
 public:
     // initialization
     BankSys() {}
-    BankSys(string Hname, double Hbalance, int Hphone, string Hcity, string HaccountNumber)
+    BankSys(string name, double balance, string phone, string city, string accountNumber)
     {
-        this->name = Hname;
-        this->balance = Hbalance;
-        this->phone = Hphone;
-        this->city = Hcity;
-        this->accountNumber = HaccountNumber;
+        this->name = name;
+        this->balance = balance;
+        this->phone = phone;
+        this->city = city;
+        this->accountNumber = accountNumber;
     }
     // getter
     string getName()
@@ -29,7 +29,7 @@ public:
     {
         return balance;
     }
-    int getPhone()
+    string getPhone()
     {
         return phone;
     }
@@ -50,7 +50,7 @@ public:
     {
         this->balance = balance;
     }
-    void setPhone(int phone)
+    void setPhone(string phone)
     {
         this->phone = phone;
     }
@@ -62,13 +62,29 @@ public:
     {
         this->accountNumber = accountNumber;
     }
-
-    void display()
+    virtual void setInformation()
+    {
+        cout << "Name: ";
+        cin.ignore();
+        getline(cin, name);
+        cout << "Balance: ";
+        cin >> balance;
+        cout << "Phone: ";
+        cin.ignore();
+        getline(cin, phone);
+        cout << "City: ";
+        cin.ignore();
+        getline(cin, city);
+        cout << "Account Number: ";
+        cin.ignore();
+        getline(cin, accountNumber);
+    }
+    virtual void display()
     {
         cout << "Your name: " << name << endl;
-        cout << "Account Number: " << accountNumber << endl;
-        cout << "City: " << city << endl;
-        cout << "Your phone: " << phone << endl;
         cout << "Balance: " << balance << endl;
+        cout << "Your phone: " << phone << endl;
+        cout << "City: " << city << endl;
+        cout << "Account Number: " << accountNumber << endl;
     }
 };

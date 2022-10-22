@@ -1,15 +1,12 @@
 #include <iostream>
-using namespace std;
-class Person
-{
-private:
-    int a;
+#include <string>
 
-public:
-    int c;
-};
-class demo : public Person
+using namespace std;
+
+int main()
 {
-private:
-    int d;
-};
+    string str = "geeksforgeeks a computer scienceg";
+    size_t foung = str.find("eks");
+    cout << foung << endl;
+    return 0;
+}

@@ -36,9 +36,9 @@ public:
     {
         return balance;
     }
-    double getBalanceDouble()
+    int getBalanceInterger()
     {
-        return stod(balance);
+        return stoi(balance);
     }
     string getPhone()
     {

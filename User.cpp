@@ -95,9 +95,9 @@ public:
         {
             if (bankPhone[i] == phone)
             {
-                double balance = stod(bankBalance[i]);
+                int balance = stoi(bankBalance[i]);
                 cout << "Demo balance: " << balance << endl;
-                double deposit;
+                int deposit;
                 cout << "Enter deposit money: ";
                 cin >> deposit;
                 balance += deposit;
@@ -113,7 +113,39 @@ public:
             cout << "==> Phone number not found" << endl;
         }
     }
-    //  using setInformation::BankSys;
+    void withdrawMoney(AccessControl *access)
+    {
+        string phone = access->getaccessPhone();
+        cout << "DEMO: " << phone << endl;
+        bool check = false;
+        for (int i = 0; i < maxrow; i++)
+        {
+            if (bankPhone[i] == phone)
+            {
+                int balance = stoi(bankBalance[i]);
+                if (balance < 50)
+                {
+                    cout << "==> Your balance must be more than 50 to withdraw" << endl;
+                    break;
+                }
+                cout << "Demo balance: " << balance << endl;
+                int deposit;
+                cout << "Enter withdraw money: ";
+                cin >> deposit;
+                balance -= deposit;
+                bankBalance[i] = to_string(balance);
+                cout << "Withdraw successfully" << endl;
+                cout << "New balance: " << bankBalance[i] << endl;
+                check == true;
+                break;
+            }
+        }
+        if (check == false)
+        {
+            cout << "==> Phone number not found" << endl;
+        }
+    }
+    //  using setInformation::BankSys; (maybe in admin)
     void setInformation()
     {
         BankSys::setInformation();

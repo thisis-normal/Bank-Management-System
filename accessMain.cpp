@@ -3,7 +3,7 @@
 #include "User.cpp"
 int main()
 {
-    cout << "Sign Up To Our Project!" << endl;
+    cout << "Sign In To Our Project!" << endl;
     AccessControl a1;
     openFile();
     // cout << "Set phone: " << endl;
@@ -20,7 +20,7 @@ int main()
         cout << "Welcome User!" << endl;
         openFileUser();
         User user;
-        user.depositMoney(&a1);
+        user.withdrawMoney(&a1);
         user.display();
         saveFileUser();
     }

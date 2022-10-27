@@ -1,10 +1,17 @@
-#include <iostream>
+#include <bits/stdc++.h>
+#include "D:/Learning/C++/Project/Access.cpp"
 using namespace std;
-class BankSys
+#pragma once
+string bankName[maxrow] = {};
+string bankBalance[maxrow] = {};
+string bankPhone[maxrow] = {};
+string bankCity[maxrow] = {};
+string bankAccountNumber[maxrow] = {};
+class BankSys : public AccessControl
 {
 private:
     string name;
-    double balance;
+    string balance;
     string phone;
     string city;
     string accountNumber;
@@ -12,7 +19,7 @@ private:
 public:
     // initialization
     BankSys() {}
-    BankSys(string name, double balance, string phone, string city, string accountNumber)
+    BankSys(string name, string balance, string phone, string city, string accountNumber)
     {
         this->name = name;
         this->balance = balance;
@@ -25,9 +32,13 @@ public:
     {
         return name;
     }
-    double getBalance()
+    string getBalance()
     {
         return balance;
+    }
+    double getBalanceDouble()
+    {
+        return stod(balance);
     }
     string getPhone()
     {
@@ -46,7 +57,7 @@ public:
     {
         this->name = name;
     }
-    void setBalance(double balance)
+    void setBalance(string balance)
     {
         this->balance = balance;
     }
@@ -62,23 +73,21 @@ public:
     {
         this->accountNumber = accountNumber;
     }
+    // other methods
     virtual void setInformation()
     {
         cout << "Name: ";
-        cin.ignore();
         getline(cin, name);
         cout << "Balance: ";
-        cin >> balance;
+        getline(cin, balance);
         cout << "Phone: ";
-        cin.ignore();
         getline(cin, phone);
         cout << "City: ";
-        cin.ignore();
         getline(cin, city);
         cout << "Account Number: ";
-        cin.ignore();
         getline(cin, accountNumber);
     }
+
     virtual void display()
     {
         cout << "Your name: " << name << endl;

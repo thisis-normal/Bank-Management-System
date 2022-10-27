@@ -1,5 +1,6 @@
 #include "Access.cpp"
 #include "Access_db.cpp"
+#include "User.cpp"
 int main()
 {
     cout << "Sign Up To Our Project!" << endl;
@@ -8,23 +9,25 @@ int main()
     // cout << "Set phone: " << endl;
     // a1.setPhone("3");
     a1.signIn();
+    a1.validateSignIn();
     // if sign in as admin then go to admin page, if sign in as user then go to user page
-    if (a1.getRole() == "admin")
+    if (a1.getRoleByaccessPhone(a1.getaccessPhone()) == "admin")
     {
-        cout << "Welcome to admin page!" << endl;
-        // create a object of admin class
-        // Admin admin;
-        // admin.adminPage();
+        cout << "Welcome Admin!" << endl;
     }
-    else if (a1.getRole() == "user")
+    else if (a1.getRoleByaccessPhone(a1.getaccessPhone()) == "user")
     {
-        cout << "Welcome to user page!" << endl;
-        // create a object of user class
-        // User u1;
-        // call deposit method in user class
-        // u1.deposit();
+        cout << "Welcome User!" << endl;
+        openFileUser();
+        User user;
+        user.depositMoney(&a1);
+        user.display();
+        saveFileUser();
     }
-
+    else
+    {
+        cout << "Invalid Phone or Password!" << endl;
+    }
     saveFile();
     Display();
     return 0;

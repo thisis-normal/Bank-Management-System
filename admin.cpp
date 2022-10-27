@@ -2,15 +2,15 @@
 #include "BankSys.cpp"
 #include "Access.cpp"
 using namespace std;
-class admin : public BankSys, public AccessControl
+class Admin : public BankSys, public AccessControl
 {
 private:
     string accountType;
 
 public:
     // initialization
-    admin() {}
-    admin(string accountType) { this->accountType = accountType; }
+    Admin() {}
+    Admin(string accountType) { this->accountType = accountType; }
     // getter
     string getAccountType()
     {

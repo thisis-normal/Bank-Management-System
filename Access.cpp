@@ -1,30 +1,30 @@
 #include <bits/stdc++.h>
 #include <sstream>
+const int maxrow = 50;
 #pragma once
 using namespace std;
-const int maxrow = 50;
 string AccessPhone[maxrow] = {};
 string AccessPass[maxrow] = {};
 string AccessRole[maxrow] = {};
 class AccessControl
 {
 private:
-    string phone;
+    string accessPhone;
     string password;
     string role;
 
 public:
     AccessControl() {}
-    AccessControl(string phone, string password, string role)
+    AccessControl(string accessPhone, string password, string role)
     {
-        this->phone = phone;
+        this->accessPhone = accessPhone;
         this->password = password;
         this->role = role;
     }
     // getter
-    string getPhone()
+    string getaccessPhone()
     {
-        return phone;
+        return accessPhone;
     }
     string getPassword()
     {
@@ -35,9 +35,9 @@ public:
         return role;
     }
     // setter
-    void setPhone(string phone)
+    void setaccessPhone(string accessPhone)
     {
-        this->phone = phone;
+        this->accessPhone = accessPhone;
     }
     void setPassword(string password)
     {
@@ -49,9 +49,9 @@ public:
     }
     void setInfor()
     {
-        cout << "Phone: ";
+        cout << "accessPhone: ";
         cin.ignore();
-        getline(cin, phone);
+        getline(cin, accessPhone);
         cout << "Password: ";
         getline(cin, password);
         cout << "Role: ";
@@ -59,39 +59,39 @@ public:
     }
     void signIn()
     {
-        cout << "Phone: ";
-        getline(cin, phone);
+        cout << "accessPhone: ";
+        getline(cin, accessPhone);
         cout << "Password: ";
         getline(cin, password);
-        cout << phone << " " << password << endl;
+        cout << accessPhone << " " << password << endl;
     }
     void signUp()
     {
-        cout << "Phone: ";
-        getline(cin, phone);
+        cout << "accessPhone: ";
+        getline(cin, accessPhone);
         cout << "Password: ";
         getline(cin, password);
-        cout << "Role: (admin or user) ";
+        cout << "Role (admin or user):  ";
         getline(cin, role);
     }
     void validateSignIn()
     {
-        if (phone.empty() || password.empty())
+        if (accessPhone.empty() || password.empty())
         {
-            cout << "Phone or password cannot be empty" << endl;
+            cout << "accessPhone or password cannot be empty" << endl;
             return;
         }
-        // if (phone.length() != 10)
+        // if (accessPhone.length() != 10)
         // {
-        //     cout << "Phone number must be 10 digits" << endl;
+        //     cout << "accessPhone number must be 10 digits" << endl;
         //     return;
         // }
-        // validate phone
-        for (int i = 0; i < phone.length(); i++)
+        // validate accessPhone
+        for (int i = 0; i < accessPhone.length(); i++)
         {
-            if (phone[i] < '0' || phone[i] > '9')
+            if (accessPhone[i] < '0' || accessPhone[i] > '9')
             {
-                cout << "Phone number must be a number" << endl;
+                cout << "accessPhone number must be a number" << endl;
                 return;
             }
         }
@@ -99,7 +99,7 @@ public:
         bool check = false;
         for (int i = 0; i < maxrow; i++)
         {
-            if (phone == AccessPhone[i] && password == AccessPass[i])
+            if (accessPhone == AccessPhone[i] && password == AccessPass[i])
             {
                 check = true;
                 break;
@@ -108,7 +108,6 @@ public:
         if (check)
         {
             cout << "Sign in successfully" << endl;
-            cout << "Hello " << role << endl;
         }
         else
         {
@@ -117,21 +116,21 @@ public:
     }
     void validateSignUp()
     {
-        if (phone.empty() || password.empty() || role.empty())
+        if (accessPhone.empty() || password.empty() || role.empty())
         {
-            cout << "Phone, password or role cannot be empty" << endl;
+            cout << "accessPhone, password or role cannot be empty" << endl;
             return;
         }
-        if (phone.length() != 10)
+        if (accessPhone.length() != 10)
         {
-            cout << "Phone number must be 10 digits" << endl;
+            cout << "accessPhone number must be 10 digits" << endl;
             return;
         }
-        for (int i = 0; i < phone.length(); i++)
+        for (int i = 0; i < accessPhone.length(); i++)
         {
-            if (phone[i] < '0' || phone[i] > '9')
+            if (accessPhone[i] < '0' || accessPhone[i] > '9')
             {
-                cout << "Phone number must be a number" << endl;
+                cout << "accessPhone number must be a number" << endl;
                 return;
             }
         }
@@ -152,12 +151,12 @@ public:
                 return;
             }
         }
-        // check if phone number is already existed in text file
+        // check if accessPhone number is already existed in text file
         for (int i = 0; i < maxrow; i++)
         {
-            if (phone == AccessPhone[i])
+            if (accessPhone == AccessPhone[i])
             {
-                cout << "Phone number is already existed" << endl;
+                cout << "accessPhone number is already existed" << endl;
                 return;
             }
         }
@@ -165,7 +164,7 @@ public:
         {
             if (AccessPhone[i] == "\0")
             {
-                AccessPhone[i] = phone;
+                AccessPhone[i] = accessPhone;
                 AccessPass[i] = password;
                 AccessRole[i] = role;
                 break;
@@ -173,9 +172,20 @@ public:
         }
         cout << "Validated successfully" << endl;
     }
+    string getRoleByaccessPhone(string accessPhone)
+    {
+        for (int i = 0; i < maxrow; i++)
+        {
+            if (accessPhone == AccessPhone[i])
+            {
+                return AccessRole[i];
+            }
+        }
+        return "";
+    }
     void display()
     {
-        cout << "Phone: " << phone << endl;
+        cout << "accessPhone: " << accessPhone << endl;
         cout << "Password: " << password << endl;
         cout << "Role: " << role << endl;
     }

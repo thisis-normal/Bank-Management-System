@@ -210,12 +210,23 @@ int main()
             Display();
             break;
         case 6:
-            break;
+            cout << "Do you want to exit? (Y/N): ";
+            char c;
+            cin >> c;
+            if (c == 'Y' || c == 'y')
+            {
+                cout << "Saved successfully" << endl;
+                exit(0);
+            }
+            else
+            {
+                break;
+            }
         default:
             cout << "SAI ROI`" << endl;
             break;
         }
-    } while (option != 6);
+    } while (option != 7);
     saveFile();
     cout << "Saving ";
     // delay 1 second

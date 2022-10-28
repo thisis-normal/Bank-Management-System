@@ -1,5 +1,5 @@
 #include "Access.cpp"
-void openFile()
+void openFileAccess()
 {
     ifstream file("Access.txt");
     if (file.is_open())
@@ -17,15 +17,15 @@ void openFile()
             i++;
             countLine++;
         }
-        // read all data from file
-        for (int i = 0; i < countLine; i++)
-        {
-            cout << AccessPhone[i] << " " << AccessPass[i] << " " << AccessRole[i] << endl;
-        }
+        // // read all data from file
+        // for (int i = 0; i < countLine; i++)
+        // {
+        //     cout << AccessPhone[i] << " " << AccessPass[i] << " " << AccessRole[i] << endl;
+        // }
     }
     file.close();
 }
-void saveFile()
+void saveFileAccess()
 {
     // save file
     ofstream myfile("Access.txt");

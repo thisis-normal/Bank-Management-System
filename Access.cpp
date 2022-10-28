@@ -63,7 +63,8 @@ public:
         getline(cin, accessPhone);
         cout << "Password: ";
         getline(cin, password);
-        cout << accessPhone << " " << password << endl;
+        // check if accessPhone and password is inputted
+        // cout << accessPhone << " " << password << endl;
     }
     void signUp()
     {

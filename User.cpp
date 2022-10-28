@@ -21,23 +21,11 @@ void openFileUser()
             i++;
             countLine++;
         }
-        // while (getline(file, line))
-        // {
-        //     // insert data into array, split by comma
-        //     istringstream iss(line);
-        //     getline(iss, bankName[i], ',');
-        //     getline(iss, bankName[i], ',');
-        //     getline(iss,  bankPhone[i]), ',';
-        //     getline(iss, bankCity[i]), ',';
-        //     getline(iss, bankAccountNumber[i]);
-        //     i++;
-        //     countLine++;
-        // }
         // read all data from file
-        for (int i = 0; i < countLine; i++)
-        {
-            cout << bankName[i] << " " << bankBalance[i] << " " << bankPhone[i] << " " << bankCity[i] << " " << bankAccountNumber[i] << endl;
-        }
+        // for (int i = 0; i < countLine; i++)
+        // {
+        //     cout << bankName[i] << " " << bankBalance[i] << " " << bankPhone[i] << " " << bankCity[i] << " " << bankAccountNumber[i] << endl;
+        // }
     }
     file.close();
 }
@@ -59,7 +47,25 @@ void saveFileUser()
 class User : public BankSys
 {
 public:
-    void display()
+    User(){};
+    //  display information of account with phone number
+    void displayWtPhone(AccessControl *access)
+    {
+        string phone = access->getaccessPhone();
+        cout << "Here is the information of USER" << phone << endl;
+        for (int i = 0; i < maxrow; i++)
+        {
+            if (bankPhone[i] == phone)
+            {
+                cout << "Name: " << bankName[i] << endl;
+                cout << "Balance: " << bankBalance[i] << endl;
+                cout << "Phone: " << bankPhone[i] << endl;
+                cout << "City: " << bankCity[i] << endl;
+                cout << "Account Number: " << bankAccountNumber[i] << endl;
+            }
+        }
+    }
+    void displayAll()
     {
         int count = 0;
         cout << "Here is the list: " << endl;
@@ -89,14 +95,13 @@ public:
     void depositMoney(AccessControl *access)
     {
         string phone = access->getaccessPhone();
-        cout << "DEMO: " << phone << endl;
         bool check = false;
         for (int i = 0; i < maxrow; i++)
         {
             if (bankPhone[i] == phone)
             {
                 int balance = stoi(bankBalance[i]);
-                cout << "Demo balance: " << balance << endl;
+                cout << "Your current balance: " << balance << endl;
                 int deposit;
                 cout << "Enter deposit money: ";
                 cin >> deposit;
@@ -108,16 +113,10 @@ public:
                 break;
             }
         }
-        if (check == false)
-        {
-            cout << "==> Phone number not found" << endl;
-        }
     }
     void withdrawMoney(AccessControl *access)
     {
         string phone = access->getaccessPhone();
-        cout << "DEMO: " << phone << endl;
-        bool check = false;
         for (int i = 0; i < maxrow; i++)
         {
             if (bankPhone[i] == phone)
@@ -128,21 +127,16 @@ public:
                     cout << "==> Your balance must be more than 50 to withdraw" << endl;
                     break;
                 }
-                cout << "Demo balance: " << balance << endl;
-                int deposit;
+                cout << "Your current balance: " << balance << endl;
+                int withdraw;
                 cout << "Enter withdraw money: ";
-                cin >> deposit;
-                balance -= deposit;
+                cin >> withdraw;
+                balance -= withdraw;
                 bankBalance[i] = to_string(balance);
-                cout << "Withdraw successfully" << endl;
+                cout << "Withdraw successfully!" << endl;
                 cout << "New balance: " << bankBalance[i] << endl;
-                check == true;
                 break;
             }
-        }
-        if (check == false)
-        {
-            cout << "==> Phone number not found" << endl;
         }
     }
     //  using setInformation::BankSys; (maybe in admin)
@@ -162,16 +156,59 @@ public:
             }
         }
     }
-    void Menu()
+    void tranferMoney(AccessControl *access)
     {
-        printf("+---------------------------------------------------------------------+\n");
-        printf("|		             USER MANANGEMENT PROGRAM                         |\n");
-        printf("+---------------------------------------------------------------------+\n");
-        printf("|1. Display  |2. Deposit  |3. Withdraw  |4. Transaction  |5.  Exit    |\n");
-        printf("+---------------------------------------------------------------------+\n");
-        cout << "Enter your option: ";
+        string phone = access->getaccessPhone();
+        string destiPhone;
+        cout << "Enter destination phone: ";
+        cin.ignore();
+        getline(cin, destiPhone);
+        int money;
+        cout << "Enter money: ";
+        cin >> money;
+        for (int i = 0; i < maxrow; i++)
+        {
+            if (bankPhone[i] == phone)
+            {
+                int balance = stoi(bankBalance[i]);
+                if (balance <= 0)
+                {
+                    cout << "==> Your balance must be more than 0 to tranfer" << endl;
+                    break;
+                }
+                if (money > balance)
+                {
+                    cout << "==> Your balance is not enough to transfer" << endl;
+                    break;
+                }
+                balance -= money;
+                bankBalance[i] = to_string(balance);
+                cout << "Successfully decrease your balance" << endl;
+                break;
+            }
+        }
+        for (int i = 0; i < maxrow; i++)
+        {
+            if (bankPhone[i] == destiPhone)
+            {
+                int balance = stoi(bankBalance[i]);
+                balance += money;
+                bankBalance[i] = to_string(balance);
+                cout << "Successfully increase destination balance" << endl;
+                break;
+            }
+        }
     }
 };
+void userMenu()
+{
+    cout << "+----------------------------------------------------------------------+" << endl;
+    cout << "|                      USER MANANGEMENT PROGRAM                        |" << endl;
+    cout << "+----------------------------------------------------------------------+" << endl;
+    cout << "|1. Display |2. Deposit |3. Withdraw  |4. Transaction |5. Exit & Save  |" << endl;
+    cout << "+----------------------------------------------------------------------+" << endl;
+    cout << "Enter your option: ";
+}
 void delayDot(unsigned int seconds)
 {
     for (int i = 0; i < seconds; i++)

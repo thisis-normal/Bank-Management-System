@@ -158,6 +158,7 @@ public:
     }
     void tranferMoney(AccessControl *access)
     {
+        // check if both phone number exist
         string phone = access->getaccessPhone();
         string destiPhone;
         cout << "Enter destination phone: ";
@@ -174,7 +175,7 @@ public:
                 if (balance <= 0)
                 {
                     cout << "==> Your balance must be more than 0 to tranfer" << endl;
-                    break;
+                    return;
                 }
                 if (money > balance)
                 {

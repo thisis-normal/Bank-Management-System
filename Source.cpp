@@ -11,6 +11,8 @@ int main()
     a1.signIn();
     a1.validateSignIn();
     // if sign in as admin then go to admin page, if sign in as user then go to user page
+    // clear the screen
+    system("cls");
     if (a1.getRoleByaccessPhone(a1.getaccessPhone()) == "admin")
     {
         cout << "Welcome Admin!" << endl;
@@ -43,14 +45,15 @@ int main()
                 cout << "Exit" << endl;
                 break;
             default:
-                cout << "Invalid choice" << endl;
+                system("cls");
+                cout << "Invalid option, please try again" << endl;
                 break;
             }
         } while (choice != 5);
         saveFileUser();
         cout << "Saving ";
         delayDot(5);
-        cout << "Done!" << endl;
+        cout << " Done!" << endl;
         cout << "Thank you for using our program!" << endl;
     }
     else

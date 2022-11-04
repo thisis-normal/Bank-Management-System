@@ -87,12 +87,5 @@ public:
         cout << "Account Number: ";
         getline(cin, accountNumber);
     }
-    virtual void display()
-    {
-        cout << "Your name: " << name << endl;
-        cout << "Balance: " << balance << endl;
-        cout << "Your phone: " << phone << endl;
-        cout << "City: " << city << endl;
-        cout << "Account Number: " << accountNumber << endl;
-    }
+    virtual void display() {}
 };

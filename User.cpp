@@ -95,7 +95,7 @@ public:
     void depositMoney(AccessControl *access)
     {
         string phone = access->getaccessPhone();
-        bool check = false;
+        int count = 0;
         for (int i = 0; i < maxrow; i++)
         {
             if (bankPhone[i] == phone)
@@ -109,9 +109,13 @@ public:
                 bankBalance[i] = to_string(balance);
                 cout << "Deposit successfully" << endl;
                 cout << "New balance: " << bankBalance[i] << endl;
-                check == true;
+                count++;
                 break;
             }
+        }
+        if (count == 0)
+        {
+            cout << "==> No records found" << endl;
         }
     }
     void withdrawMoney(AccessControl *access)
@@ -209,12 +213,4 @@ void userMenu()
     cout << "|1. Display |2. Deposit |3. Withdraw  |4. Transaction |5. Exit & Save  |" << endl;
     cout << "+----------------------------------------------------------------------+" << endl;
     cout << "Enter your option: ";
-}
-void delayDot(unsigned int seconds)
-{
-    for (int i = 0; i < seconds; i++)
-    {
-        cout << ".";
-        this_thread::sleep_for(chrono::milliseconds(700));
-    }
 }

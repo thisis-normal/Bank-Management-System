@@ -1,21 +1,75 @@
 #include "Access.cpp"
 #include "Access_db.cpp"
 #include "User.cpp"
+#include "Admin.cpp"
+void delayDot(unsigned int seconds)
+{
+    for (int i = 0; i < seconds; i++)
+    {
+        cout << ".";
+        this_thread::sleep_for(chrono::milliseconds(700));
+    }
+}
 int main()
 {
     cout << "Sign In To Our Project!" << endl;
     AccessControl a1;
     openFileAccess();
-    // cout << "Set phone: " << endl;
-    // a1.setPhone("3");
     a1.signIn();
     a1.validateSignIn();
-    // if sign in as admin then go to admin page, if sign in as user then go to user page
-    // clear the screen
     system("cls");
     if (a1.getRoleByaccessPhone(a1.getaccessPhone()) == "admin")
     {
-        cout << "Welcome Admin!" << endl;
+        cout << "Welcome ADMIN" << a1.getaccessPhone() << "!" << endl;
+        OpenFileAdmin();
+        Admin admin;
+        int choice;
+        do
+        {
+            adminMenu();
+            cin >> choice;
+            switch (choice)
+            {
+            case 1:
+                admin.Create();
+                break;
+            case 2:
+                system("cls");
+                admin.Display();
+                cout << endl;
+                break;
+            case 3:
+                system("cls");
+                admin.Search();
+                cout << endl;
+                break;
+            case 4:
+                system("cls");
+                admin.Update();
+                break;
+            case 5:
+                system("cls");
+                admin.Delete();
+                break;
+            case 6:
+                admin.Deposit();
+                break;
+            // case 7:
+            //     admin.deleteUser();
+            //     break;
+            // case 8:
+            //     admin.updateUser();
+            //     break;
+            // case 9:
+            //     cout << "Thank you for using our project!" << endl;
+            //     delayDot(3);
+            //     break;
+            default:
+                cout << "Invalid choice!" << endl;
+                break;
+            }
+        } while (choice != 9);
+        SaveFileAdmin();
     }
     else if (a1.getRoleByaccessPhone(a1.getaccessPhone()) == "user")
     {

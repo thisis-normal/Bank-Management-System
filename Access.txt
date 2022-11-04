@@ -1,2 +1,2 @@
-0915646736,normal,user
+0915646736,normal,admin
 0123456789,test,user

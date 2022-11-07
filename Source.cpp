@@ -31,7 +31,7 @@ int main()
             switch (choice)
             {
             case 1:
-                admin.Create();
+                admin.searchPhoneAccess(a1);
                 break;
             case 2:
                 system("cls");
@@ -60,10 +60,11 @@ int main()
             // case 8:
             //     admin.updateUser();
             //     break;
-            // case 9:
-            //     cout << "Thank you for using our project!" << endl;
-            //     delayDot(3);
-            //     break;
+            case 9:
+                cout << "Saving data to file..." << endl;
+                cout << "Thank you for using our project!" << endl;
+                delayDot(3);
+                break;
             default:
                 cout << "Invalid choice!" << endl;
                 break;

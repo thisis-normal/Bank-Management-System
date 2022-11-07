@@ -57,6 +57,7 @@ public:
         cout << "Role: ";
         getline(cin, role);
     }
+    // other methods
     void signIn()
     {
         cout << "accessPhone: ";
@@ -117,41 +118,41 @@ public:
     }
     void validateSignUp()
     {
-        if (accessPhone.empty() || password.empty() || role.empty())
-        {
-            cout << "accessPhone, password or role cannot be empty" << endl;
-            return;
-        }
-        if (accessPhone.length() != 10)
-        {
-            cout << "accessPhone number must be 10 digits" << endl;
-            return;
-        }
-        for (int i = 0; i < accessPhone.length(); i++)
-        {
-            if (accessPhone[i] < '0' || accessPhone[i] > '9')
-            {
-                cout << "accessPhone number must be a number" << endl;
-                return;
-            }
-        }
-        if (role != "admin" && role != "user")
-        {
-            cout << "Role must be admin or user" << endl;
-            return;
-        }
-        // insert private key when role is admin
-        if (role == "admin")
-        {
-            string privateKey;
-            cout << "Enter private key: ";
-            cin >> privateKey;
-            if (privateKey != "123456")
-            {
-                cout << "Wrong private key" << endl;
-                return;
-            }
-        }
+        // if (accessPhone.empty() || password.empty() || role.empty())
+        // {
+        //     cout << "accessPhone, password or role cannot be empty" << endl;
+        //     return;
+        // }
+        // if (accessPhone.length() != 10)
+        // {
+        //     cout << "accessPhone number must be 10 digits" << endl;
+        //     return;
+        // }
+        // for (int i = 0; i < accessPhone.length(); i++)
+        // {
+        //     if (accessPhone[i] < '0' || accessPhone[i] > '9')
+        //     {
+        //         cout << "accessPhone number must be a number" << endl;
+        //         return;
+        //     }
+        // }
+        // if (role != "admin" && role != "user")
+        // {
+        //     cout << "Role must be admin or user" << endl;
+        //     return;
+        // }
+        // // insert private key when role is admin
+        // if (role == "admin")
+        // {
+        //     string privateKey;
+        //     cout << "Enter private key: ";
+        //     cin >> privateKey;
+        //     if (privateKey != "123456")
+        //     {
+        //         cout << "Wrong private key" << endl;
+        //         return;
+        //     }
+        // }
         // check if accessPhone number is already existed in text file
         for (int i = 0; i < maxrow; i++)
         {

@@ -72,7 +72,33 @@ public:
                 break;
             }
         }
-    };
+    }
+    void searchPhoneAccess(AccessControl &ac)
+    {
+        string accessPhone;
+        cout << "Enter phone number: ";
+        cin >> accessPhone;
+        for (int i = 0; i < maxrow; i++)
+        {
+            if (accessPhone == AccessPhone[i])
+            {
+                cout << "accessPhone number is existed" << endl;
+                cout << "You can create new information for this accessPhone number" << endl;
+                Create();
+                return;
+            }
+        }
+        cout << "accessPhone number is not existed" << endl;
+        cout << "Do you want to create new accessPhone number? (y/n): ";
+        string choice;
+        cin >> choice;
+        if (choice == "y")
+        {
+            cin.ignore();
+            ac.signUp();
+            ac.validateSignUp();
+        }
+    }
     void Search()
     {
         string phone;

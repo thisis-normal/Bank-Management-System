@@ -12,10 +12,12 @@ void delayDot(unsigned int seconds)
 }
 int main()
 {
+    // heart symbol
+    char heart = 3;
     cout << "Sign In To Our Project!" << endl;
     AccessControl a1;
     openFileAccess();
-    a1.signIn();
+    // a1.signIn();
     a1.validateSignIn();
     system("cls");
     if (a1.getRoleByaccessPhone(a1.getaccessPhone()) == "admin")
@@ -39,6 +41,7 @@ int main()
                 cout << endl;
                 break;
             case 3:
+                cin.ignore();
                 system("cls");
                 admin.Search();
                 cout << endl;
@@ -52,18 +55,27 @@ int main()
                 admin.Delete();
                 break;
             case 6:
+                system("cls");
                 admin.Deposit();
                 break;
-            // case 7:
-            //     admin.deleteUser();
-            //     break;
-            // case 8:
-            //     admin.updateUser();
-            //     break;
+            case 7:
+                system("cls");
+                admin.Withdraw();
+                break;
+            case 8:
+                system("cls");
+                admin.Transaction();
+                break;
             case 9:
-                cout << "Saving data to file..." << endl;
+
+                cout << "Saving data to file ";
+                delayDot(5);
+                cout << endl;
                 cout << "Thank you for using our project!" << endl;
-                delayDot(3);
+                cout << heart << " " << heart << " FROM TEAM 1 WITH LOVE " << heart << " " << heart << endl;
+                cout << "1. Nguyen Huu Thuong" << endl;
+                cout << "2. Nguyen Thanh Chung" << endl;
+                cout << "3. Pham Dat Thanh Duy" << endl;
                 break;
             default:
                 cout << "Invalid choice!" << endl;
@@ -85,31 +97,38 @@ int main()
             switch (choice)
             {
             case 1:
+                system("cls");
                 user.displayWtPhone(&a1);
                 break;
             case 2:
+                system("cls");
                 user.depositMoney(&a1);
                 break;
             case 3:
+                system("cls");
                 user.withdrawMoney(&a1);
                 break;
             case 4:
+                system("cls");
                 user.tranferMoney(&a1);
                 break;
             case 5:
-                cout << "Exit" << endl;
+                system("cls");
+                cout << "Saving data to file ";
+                delayDot(5);
+                cout << endl;
+                cout << "Thank you for using our project!" << endl;
+                cout << heart << " " << heart << " FROM TEAM 1 WITH LOVE " << heart << " " << heart << endl;
+                cout << "1. Nguyen Huu Thuong" << endl;
+                cout << "2. Nguyen Thanh Chung" << endl;
+                cout << "3. Pham Dat Thanh Duy" << endl;
                 break;
             default:
-                system("cls");
                 cout << "Invalid option, please try again" << endl;
                 break;
             }
         } while (choice != 5);
         saveFileUser();
-        cout << "Saving ";
-        delayDot(5);
-        cout << " Done!" << endl;
-        cout << "Thank you for using our program!" << endl;
     }
     else
     {

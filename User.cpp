@@ -154,22 +154,7 @@ public:
         }
     }
     //  using setInformation::BankSys; (maybe in admin)
-    void setInformation()
-    {
-        BankSys::setInformation();
-        for (int i = 0; i < maxrow; i++)
-        {
-            if (bankName[i] == "\0")
-            {
-                bankName[i] = getName();
-                bankBalance[i] = getBalance();
-                bankPhone[i] = getPhone();
-                bankCity[i] = getCity();
-                bankAccountNumber[i] = getAccountNumber();
-                break;
-            }
-        }
-    }
+
     void tranferMoney(AccessControl *access)
     {
         // check if both phone number exist

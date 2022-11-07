@@ -258,7 +258,73 @@ public:
             cout << "Cannot find phone number" << endl;
         }
     };
-    void Transaction(){};
+    void Transaction()
+    {
+        // check if both phone number is existed
+        string phone1, phone2;
+        cout << "Enter giver phone number: ";
+        cin.ignore();
+        getline(cin, phone1);
+        cout << "Enter receiver phone number: ";
+        getline(cin, phone2);
+        int count1 = 0, count2 = 0;
+        for (int i = 0; i < maxrow; i++)
+        {
+            if (bankPhone[i] == phone1)
+            {
+                count1++;
+            }
+            if (bankPhone[i] == phone2)
+            {
+                count2++;
+            }
+        }
+        if (count1 == 0 || count2 == 0)
+        {
+            cout << "Cannot find phone number" << endl;
+        }
+        else
+        {
+            // check if both phone number is different
+            if (phone1 == phone2)
+            {
+                cout << "Phone number 1 and phone number 2 must be different" << endl;
+            }
+            else
+            {
+                // check if phone number 1 has enough balance
+                int amount;
+                cout << "Enter amount to transfer: ";
+                cin >> amount;
+                for (int i = 0; i < maxrow; i++)
+                {
+                    if (bankPhone[i] == phone1)
+                    {
+                        if (amount > stoi(bankBalance[i]))
+                        {
+                            cout << "Your balance is not enough" << endl;
+                        }
+                        else
+                        {
+                            bankBalance[i] = to_string(stoi(bankBalance[i]) - amount);
+                            cout << "Transfer successfully!" << endl;
+                            cout << "Your new balance: " << bankBalance[i] << endl;
+                        }
+                        break;
+                    }
+                }
+                // add amount to phone number 2
+                for (int i = 0; i < maxrow; i++)
+                {
+                    if (bankPhone[i] == phone2)
+                    {
+                        bankBalance[i] = to_string(stoi(bankBalance[i]) + amount);
+                        break;
+                    }
+                }
+            }
+        }
+    }
     void Display()
     {
         int count = 0;

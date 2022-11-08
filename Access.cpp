@@ -67,43 +67,58 @@ public:
     }
     void validateSignIn()
     {
-        signIn();
         if (accessPhone.empty() || password.empty())
         {
-            cout << "accessPhone or password cannot be empty" << endl;
-            return;
+            cout << endl;
+            cout << "Phone or password cannot be empty" << endl;
+            exit(0);
         }
         if (accessPhone.length() != 10)
         {
-            cout << "accessPhone number must be 10 digits" << endl;
-            return;
+            cout << endl;
+            cout << "Phone number must be 10 digits" << endl;
+            exit(0);
         }
         // validate accessPhone
         for (int i = 0; i < accessPhone.length(); i++)
         {
             if (accessPhone[i] < '0' || accessPhone[i] > '9')
             {
-                cout << "accessPhone number must be a number" << endl;
-                return;
+                cout << endl;
+                cout << "Phone number must be a number" << endl;
+                exit(0);
             }
         }
         // check if sign in not successfully
         int count = 0;
         for (int i = 0; i < maxrow; i++)
         {
-            if (AccessPhone[i] == accessPhone && AccessPass[i] == password)
+            if (AccessPhone[i] == accessPhone)
             {
-                count = 1;
-                break;
+                if (AccessPass[i] == password)
+                {
+                    cout << endl;
+                    cout << "Sign in successfully ";
+                    return;
+                }
+                else
+                {
+                    cout << endl;
+                    cout << "Password is incorrect" << endl;
+                    exit(0);
+                }
+            }
+            else
+            {
+                count++;
             }
         }
-        if (count == 0)
+        if (count == maxrow)
         {
-            cout << "accessPhone or password is not correct" << endl;
-            return;
+            cout << endl;
+            cout << "Phone number is not exist" << endl;
+            exit(0);
         }
-        // check if sign in successfully
-        cout << "Sign in successfully" << endl;
     }
     void signUp()
     {

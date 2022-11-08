@@ -17,11 +17,13 @@ int main()
     cout << "Sign In To Our Project!" << endl;
     AccessControl a1;
     openFileAccess();
-    // a1.signIn();
+    a1.signIn();
+    cout << "Checking your information";
+    delayDot(3);
     a1.validateSignIn();
-    system("cls");
     if (a1.getRoleByaccessPhone(a1.getaccessPhone()) == "admin")
     {
+        delayDot(3);
         cout << "Welcome ADMIN" << a1.getaccessPhone() << "!" << endl;
         OpenFileAdmin();
         Admin admin;
@@ -129,10 +131,6 @@ int main()
             }
         } while (choice != 5);
         saveFileUser();
-    }
-    else
-    {
-        cout << "Invalid Phone or Password!" << endl;
     }
     saveFileAccess();
     return 0;

@@ -27,7 +27,7 @@ int main()
     a1.validateSignIn();
     if (a1.getRoleByaccessPhone(a1.getaccessPhone()) == "admin")
     {
-        delayDot(3);
+        delayDot(2);
         cout << endl;
         cout << "Welcome ADMIN" << a1.getaccessPhone() << "!" << endl;
         OpenFileAdmin();

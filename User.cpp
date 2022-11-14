@@ -154,11 +154,30 @@ public:
         }
     }
     //  using setInformation::BankSys; (maybe in admin)
-
+    void tranferHistory(AccessControl *access)
+    {
+        string phone = access->getaccessPhone();
+        for (int i = 0; i < maxrow; i++)
+        {
+            if (bankPhone[i] == phone)
+            {
+                cout << "Name: " << bankName[i] << endl;
+                cout << "Balance: " << bankBalance[i] << endl;
+                cout << "Phone: " << bankPhone[i] << endl;
+                cout << "City: " << bankCity[i] << endl;
+                cout << "Account Number: " << bankAccountNumber[i] << endl;
+                break;
+            }
+        }
+    }
     void tranferMoney(AccessControl *access)
     {
         // check if both phone number exist
         string phone = access->getaccessPhone();
+        // add phone number to transfer
+        string phoneTransfer;
+        cout << "Enter phone number to transfer: ";
+        cin >> phoneTransfer;
         string destiPhone;
         cout << "Enter destination phone: ";
         cin.ignore();

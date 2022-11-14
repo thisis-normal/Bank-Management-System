@@ -24,9 +24,11 @@ int main()
     if (a1.getRoleByaccessPhone(a1.getaccessPhone()) == "admin")
     {
         delayDot(3);
+        cout << endl;
         cout << "Welcome ADMIN" << a1.getaccessPhone() << "!" << endl;
         OpenFileAdmin();
         Admin admin;
+        BankSys bank;
         int choice;
         do
         {
@@ -66,7 +68,7 @@ int main()
                 break;
             case 8:
                 system("cls");
-                admin.Transaction();
+                admin.Transaction(bank);
                 break;
             case 9:
 

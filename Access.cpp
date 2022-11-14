@@ -47,6 +47,7 @@ public:
     {
         this->role = role;
     }
+    // other methods
     void setInfor()
     {
         cout << "accessPhone: ";
@@ -57,10 +58,9 @@ public:
         cout << "Role: ";
         getline(cin, role);
     }
-    // other methods
     void signIn()
     {
-        cout << "accessPhone: ";
+        cout << "Phone: ";
         getline(cin, accessPhone);
         cout << "Password: ";
         getline(cin, password);

@@ -105,7 +105,7 @@ public:
     }
     // other methods
     virtual void Transaction(){}; // virtual
-    void transferAdmin(string giverPhone, string receiverPhone, string amount)
+    void transfer(string giverPhone, string receiverPhone, string amount)
     {
         int indexGiver = -1;
         int indexReceiver = -1;
@@ -165,4 +165,5 @@ public:
         getline(cin, accountNumber);
     }
     virtual void display() {}
+    virtual void transactHistory(string giverPhone[], string receiverPhone[], string amount[], string phone) {}
 };

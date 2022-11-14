@@ -2,6 +2,7 @@
 #include "Access_db.cpp"
 #include "User.cpp"
 #include "Admin.cpp"
+#include "Transfer.cpp"
 void delayDot(unsigned int seconds)
 {
     for (int i = 0; i < seconds; i++)
@@ -16,6 +17,9 @@ int main()
     char heart = 3;
     cout << "Sign In To Our Project!" << endl;
     AccessControl a1;
+    BankSys bank;
+    Transfer transact;
+    string phone;
     openFileAccess();
     a1.signIn();
     cout << "Checking your information";
@@ -27,8 +31,7 @@ int main()
         cout << endl;
         cout << "Welcome ADMIN" << a1.getaccessPhone() << "!" << endl;
         OpenFileAdmin();
-        Admin admin;
-        BankSys bank;
+        Admin *admin;
         int choice;
         do
         {
@@ -37,41 +40,50 @@ int main()
             switch (choice)
             {
             case 1:
-                admin.searchPhoneAccess(a1);
+                admin->searchPhoneAccess(a1);
                 break;
             case 2:
                 system("cls");
-                admin.Display();
+                admin->Display();
                 cout << endl;
                 break;
             case 3:
                 cin.ignore();
                 system("cls");
-                admin.Search();
+                admin->Search();
                 cout << endl;
                 break;
             case 4:
                 system("cls");
-                admin.Update();
+                admin->Update();
                 break;
             case 5:
                 system("cls");
-                admin.Delete();
+                admin->Delete();
                 break;
             case 6:
                 system("cls");
-                admin.Deposit();
+                admin->Deposit();
                 break;
             case 7:
                 system("cls");
-                admin.Withdraw();
+                admin->Withdraw();
                 break;
             case 8:
                 system("cls");
-                admin.Transaction(bank);
+                admin->Transaction(bank);
                 break;
             case 9:
-
+                OpenFileTransac();
+                system("cls");
+                admin = &transact;
+                cout << "Enter number of transaction: ";
+                cin.ignore();
+                getline(cin, phone);
+                admin->transactHistory(giverPhone, receiverPhone, amount, phone);
+                SaveFileTransac();
+                break;
+            case 10:
                 cout << "Saving data to file ";
                 delayDot(5);
                 cout << endl;
@@ -85,14 +97,14 @@ int main()
                 cout << "Invalid choice!" << endl;
                 break;
             }
-        } while (choice != 9);
+        } while (choice != 10);
         SaveFileAdmin();
     }
     else if (a1.getRoleByaccessPhone(a1.getaccessPhone()) == "user")
     {
         cout << "Welcome USER" << a1.getaccessPhone() << "!" << endl;
         openFileUser();
-        User user;
+        User *user;
         int choice;
         do
         {
@@ -102,21 +114,31 @@ int main()
             {
             case 1:
                 system("cls");
-                user.displayWtPhone(&a1);
+                user->displayWtPhone(&a1);
                 break;
             case 2:
                 system("cls");
-                user.depositMoney(&a1);
+                user->depositMoney(&a1);
                 break;
             case 3:
                 system("cls");
-                user.withdrawMoney(&a1);
+                user->withdrawMoney(&a1);
                 break;
             case 4:
                 system("cls");
-                user.tranferMoney(&a1);
+                user->tranferMoney(&a1, bank);
                 break;
             case 5:
+                system("cls");
+                OpenFileTransac();
+                system("cls");
+                user = &transact;
+                cout << "Transaction history: " << endl;
+                phone = a1.getaccessPhone();
+                user->transactHistory(giverPhone, receiverPhone, amount, phone);
+                SaveFileTransac();
+                break;
+            case 6:
                 system("cls");
                 cout << "Saving data to file ";
                 delayDot(5);
@@ -131,7 +153,7 @@ int main()
                 cout << "Invalid option, please try again" << endl;
                 break;
             }
-        } while (choice != 5);
+        } while (choice != 6);
         saveFileUser();
     }
     saveFileAccess();

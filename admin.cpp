@@ -1,5 +1,6 @@
 #include "BankSys.cpp"
 #include "Access.cpp"
+#pragma once
 using namespace std;
 
 void OpenFileAdmin()
@@ -45,9 +46,9 @@ void adminMenu()
     printf("+---------------------------------------------------------------------+\n");
     printf("|                       ADMIN MANAGEMENT PROGRAM                      |\n");
     printf("+---------------------------------------------------------------------+\n");
-    printf("|1.  Create  |2.  Display  |3.  Search   |4.  Update   |5.  Delete    |\n");
+    printf("|1. Create | 2. Display |3. Search |4. Update |5. Delete | 6. Deposit |\n");
     printf("+---------------------------------------------------------------------+\n");
-    printf("|6.  Deposit  |7.  Withdraw   |8.  Transaction   |9.  Exit and Save   |\n");
+    printf("|7. Withdraw | 8. Transaction | 9. Trans's history |10. Exit and Save |\n");
     printf("+---------------------------------------------------------------------+\n");
     cout << "Enter your option: ";
 }
@@ -269,75 +270,7 @@ public:
         string amount;
         cout << "Enter amount to transfer: ";
         getline(cin, amount);
-        bs.transferAdmin(phone1, phone2, amount);
-        // assign index for both phone number
-        // int count1 = 0, count2 = 0;
-        // for (int i = 0; i < maxrow; i++)
-        // {
-        //     if (bankPhone[i] == phone1)
-        //     {
-        //         count1++;
-        //     }
-        //     if (bankPhone[i] == phone2)
-        //     {
-        //         count2++;
-        //     }
-        // }
-        // if (count1 == 0 || count2 == 0)
-        // {
-        //     cout << "Cannot find phone number" << endl;
-        // }
-        // else
-        // {
-        //     // check if both phone number is different
-        //     if (phone1 == phone2)
-        //     {
-        //         cout << "Phone number 1 and phone number 2 must be different" << endl;
-        //     }
-        //     else
-        //     {
-        //         // check if phone number 1 has enough balance
-        //         string amount;
-        //         cout << "Enter amount to transfer: ";
-        //         cin >> amount;
-        //         for (int i = 0; i < maxrow; i++)
-        //         {
-        //             if (bankPhone[i] == phone1)
-        //             {
-        //                 if (stoi(amount) > stoi(bankBalance[i]))
-        //                 {
-        //                     cout << "Your balance is not enough" << endl;
-        //                 }
-        //                 else
-        //                 {
-        //                     setGiverPhone(phone1);
-        //                     setReceiverPhone(phone2);
-        //                     setAmount(amount);
-        //                     bankBalance[i] = to_string(stoi(bankBalance[i]) - amount);
-        //                     cout << "Transfer successfully!" << endl;
-        //                     cout << "Your new balance: " << bankBalance[i] << endl;
-        //                     // add amount to phone number 2
-        //                     for (int i = 0; i < maxrow; i++)
-        //                     {
-        //                         if (bankPhone[i] == phone2)
-        //                         {
-        //                             bankBalance[i] = to_string(stoi(bankBalance[i]) + stoi(amount));
-        //                             break;
-        //                         }
-        //                         if (giverPhone[i] == "\0")
-        //                         {
-        //                             giverPhone[i] = getGiverPhone();
-        //                             receiverPhone[i] = phone2;
-        //                             amount[i] = amount;
-        //                             break;
-        //                         }
-        //                     }
-        //                 }
-        //                 break;
-        //             }
-        //         }
-        //     }
-        // }
+        bs.transfer(phone1, phone2, amount);
     }
     void Display()
     {

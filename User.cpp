@@ -49,7 +49,8 @@ void userMenu()
     cout << "+----------------------------------------------------------------------+" << endl;
     cout << "|                      USER MANANGEMENT PROGRAM                        |" << endl;
     cout << "+----------------------------------------------------------------------+" << endl;
-    cout << "|1. Display |2. Deposit |3. Withdraw  |4. Transaction |5. Exit & Save  |" << endl;
+    cout << "|    1.  Display       |      2. Deposit            |     3. Withdraw  |" << endl;
+    cout << "|    4. Transaction    |     5. Trans's history     |  6. Exit & Save  |" << endl;
     cout << "+----------------------------------------------------------------------+" << endl;
     cout << "Enter your option: ";
 }
@@ -170,76 +171,17 @@ public:
             }
         }
     }
-    void tranferMoney(AccessControl *access)
+    void tranferMoney(AccessControl *access, BankSys &bs)
     {
         // check if both phone number exist
-        string phone = access->getaccessPhone();
-        // add phone number to transfer
-        string phoneTransfer;
-        cout << "Enter phone number to transfer: ";
-        cin >> phoneTransfer;
-        string destiPhone;
-        cout << "Enter destination phone: ";
+        string giverPhone = access->getaccessPhone();
+        string receiverPhone;
+        cout << "Enter receiver phone number: ";
         cin.ignore();
-        getline(cin, destiPhone);
-        int count = 0;
-        for (int i = 0; i < maxrow; i++)
-        {
-            if (bankPhone[i] == destiPhone)
-            {
-                count++;
-            }
-        }
-        if (count == 0)
-        {
-            cout << "==> Destination phone number does not exist" << endl;
-            return;
-        }
-        else
-        {
-            if (phone == destiPhone)
-            {
-                cout << "==> You cannot transfer money to yourself" << endl;
-                return;
-            }
-            else
-            {
-                int money;
-                cout << "Enter money: ";
-                cin >> money;
-                for (int i = 0; i < maxrow; i++)
-                {
-                    if (bankPhone[i] == phone)
-                    {
-                        int balance = stoi(bankBalance[i]);
-                        if (balance <= 0)
-                        {
-                            cout << "==> Your balance must be more than 0 to tranfer" << endl;
-                            return;
-                        }
-                        if (money > balance)
-                        {
-                            cout << "==> Your balance is not enough to transfer" << endl;
-                            break;
-                        }
-                        balance -= money;
-                        bankBalance[i] = to_string(balance);
-                        cout << "Successfully decrease your balance" << endl;
-                        break;
-                    }
-                }
-                for (int i = 0; i < maxrow; i++)
-                {
-                    if (bankPhone[i] == destiPhone)
-                    {
-                        int balance = stoi(bankBalance[i]);
-                        balance += money;
-                        bankBalance[i] = to_string(balance);
-                        cout << "Successfully increase destination balance" << endl;
-                        break;
-                    }
-                }
-            }
-        }
+        getline(cin, receiverPhone);
+        string amount;
+        cout << "Enter amount to transfer: ";
+        getline(cin, amount);
+        bs.transfer(giverPhone, receiverPhone, amount);
     }
 };

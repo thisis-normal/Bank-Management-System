@@ -57,7 +57,7 @@ class Admin : public BankSys
 public:
     // initialization
     Admin(){};
-    void Create()
+    void Create(string accessPhone)
     {
         cin.ignore();
         BankSys::setInformation();
@@ -67,7 +67,7 @@ public:
             {
                 bankName[i] = getName();
                 bankBalance[i] = getBalance();
-                bankPhone[i] = getPhone();
+                bankPhone[i] = accessPhone;
                 bankCity[i] = getCity();
                 bankAccountNumber[i] = getAccountNumber();
                 break;
@@ -85,7 +85,7 @@ public:
             {
                 cout << "accessPhone number is existed" << endl;
                 cout << "You can create new information for this accessPhone number" << endl;
-                Create();
+                Create(accessPhone);
                 return;
             }
         }
@@ -93,7 +93,7 @@ public:
         cout << "Do you want to create new accessPhone number? (y/n): ";
         string choice;
         cin >> choice;
-        if (choice == "y")
+        if (choice == "y" || choice == "Y")
         {
             cin.ignore();
             ac.signUp();
@@ -298,6 +298,7 @@ public:
         cout << "Here is the list: " << endl;
         printf("+---------------------------------------------------------------------+\n");
         printf("| %-13s | %-6s | %-10s | %-10s | %-15s |\n", "Name", "Balance", "Phone", "City", "Account Number");
+        printf("|---------------------------------------------------------------------|\n");
         for (int i = 0; i < maxrow; i++)
         {
             if (bankName[i] != "\0")

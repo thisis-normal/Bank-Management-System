@@ -41,6 +41,7 @@ int main()
             switch (choice)
             {
             case 1:
+                system("cls");
                 openFileAccess();
                 admin1.searchPhoneAccess(a1);
                 saveFileAccess();

@@ -157,8 +157,8 @@ public:
         getline(cin, name);
         cout << "Balance: ";
         getline(cin, balance);
-        cout << "Phone: ";
-        getline(cin, phone);
+        // cout << "Phone: ";
+        // getline(cin, phone);
         cout << "City: ";
         getline(cin, city);
         cout << "Account Number: ";

@@ -151,7 +151,7 @@ public:
             }
         }
     }
-    virtual void setInformation()
+    void setInformation()
     {
         cout << "Name: ";
         getline(cin, name);

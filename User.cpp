@@ -76,37 +76,10 @@ public:
             }
         }
     }
-    // void displayAll()
-    // {
-    //     int count = 0;
-    //     cout << "Here is the list: " << endl;
-    //     printf("+---------------------------------------------------------------------+\n");
-    //     for (int i = 0; i < maxrow; i++)
-    //     {
-    //         if (bankName[i] != "\0")
-    //         {
-    //             cout << "Name: " << bankName[i] << "||"
-    //                  << "Balance: " << bankBalance[i] << "||"
-    //                  << "Phone: " << bankPhone[i] << "||"
-    //                  << "City: " << bankCity[i] << "||"
-    //                  << "AccountNumber: " << bankAccountNumber[i] << endl;
-    //             // printf("| %-12s | %-5s | %-10s | %-10s | %-10s |", bankName[i].c_str(), bankBalance[i].c_str(),  bankPhone[i].c_str(), bankCity[i].c_str(), bankAccountNumber[i].c_str());
-    //             cout << endl;
-    //             count++;
-    //         }
-    //     }
-    //     cout << "======================" << endl;
-    //     cout << "Total records: " << count << endl;
-    //     if (count == 0)
-    //     {
-    //         cout << "==> No records found" << endl;
-    //     }
-    // }
-    //  deposit money to account with phone number
+
     void depositMoney(AccessControl *access)
     {
         string phone = access->getaccessPhone();
-        int count = 0;
         for (int i = 0; i < maxrow; i++)
         {
             if (bankPhone[i] == phone)
@@ -116,17 +89,19 @@ public:
                 int deposit;
                 cout << "Enter deposit money: ";
                 cin >> deposit;
-                balance += deposit;
-                bankBalance[i] = to_string(balance);
-                cout << "Deposit successfully" << endl;
-                cout << "New balance: " << bankBalance[i] << endl;
-                count++;
-                break;
+                if (deposit < 0)
+                {
+                    cout << "==> Invalid deposit money" << endl;
+                }
+                else
+                {
+                    balance += deposit;
+                    bankBalance[i] = to_string(balance);
+                    cout << "==> Deposit successfully" << endl;
+                    cout << "Your new balance: " << balance << endl;
+                    break;
+                }
             }
-        }
-        if (count == 0)
-        {
-            cout << "==> No records found" << endl;
         }
     }
     void withdrawMoney(AccessControl *access)
@@ -137,24 +112,30 @@ public:
             if (bankPhone[i] == phone)
             {
                 int balance = stoi(bankBalance[i]);
-                if (balance < 50)
-                {
-                    cout << "==> Your balance must be more than 50 to withdraw" << endl;
-                    break;
-                }
                 cout << "Your current balance: " << balance << endl;
                 int withdraw;
                 cout << "Enter withdraw money: ";
                 cin >> withdraw;
-                balance -= withdraw;
-                bankBalance[i] = to_string(balance);
-                cout << "Withdraw successfully!" << endl;
-                cout << "New balance: " << bankBalance[i] << endl;
-                break;
+                if (withdraw < 0)
+                {
+                    cout << "==> Invalid withdraw money" << endl;
+                }
+                else if (withdraw > balance)
+                {
+                    cout << "==> Your balance is not enough" << endl;
+                }
+                else
+                {
+                    balance -= withdraw;
+                    bankBalance[i] = to_string(balance);
+                    cout << "==> Withdraw successfully" << endl;
+                    cout << "Your new balance: " << balance << endl;
+                    break;
+                }
             }
         }
     }
-    //  using setInformation::BankSys; (maybe in admin)
+
     void tranferHistory(AccessControl *access)
     {
         string phone = access->getaccessPhone();
@@ -182,6 +163,14 @@ public:
         string amount;
         cout << "Enter amount to transfer: ";
         getline(cin, amount);
-        bs.transfer(giverPhone, receiverPhone, amount);
+        int amountInt = stoi(amount);
+        if (amountInt < 0)
+        {
+            cout << "==> Invalid amount" << endl;
+        }
+        else
+        {
+            bs.transfer(giverPhone, receiverPhone, amount);
+        }
     }
 };

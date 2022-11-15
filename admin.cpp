@@ -59,6 +59,7 @@ public:
     Admin(){};
     void Create()
     {
+        cin.ignore();
         BankSys::setInformation();
         for (int i = 0; i < maxrow; i++)
         {
@@ -270,6 +271,11 @@ public:
         string amount;
         cout << "Enter amount to transfer: ";
         getline(cin, amount);
+        int amountInt = stoi(amount);
+        if (amountInt < 0)
+        {
+            cout << "==> Invalid amount" << endl;
+        }
         bs.transfer(phone1, phone2, amount);
     }
     void Display()
@@ -277,16 +283,12 @@ public:
         int count = 0;
         cout << "Here is the list: " << endl;
         printf("+---------------------------------------------------------------------+\n");
+        printf("| %-13s | %-6s | %-10s | %-10s | %-15s |\n", "Name", "Balance", "Phone", "City", "Account Number");
         for (int i = 0; i < maxrow; i++)
         {
             if (bankName[i] != "\0")
             {
-                // cout << "Name: " << bankName[i] << "||"
-                //      << "Balance: " << bankBalance[i] << "||"
-                //      << "Phone: " << bankPhone[i] << "||"
-                //      << "City: " << bankCity[i] << "||"
-                //      << "AccountNumber: " << bankAccountNumber[i] << endl;
-                printf("| %-17s | %-6s | %-10s | %-10s | %-12s |", bankName[i].c_str(), bankBalance[i].c_str(), bankPhone[i].c_str(), bankCity[i].c_str(), bankAccountNumber[i].c_str());
+                printf("| %-13s | %-7s | %-10s | %-10s | %-15s |", bankName[i].c_str(), bankBalance[i].c_str(), bankPhone[i].c_str(), bankCity[i].c_str(), bankAccountNumber[i].c_str());
                 cout << endl;
                 count++;
             }

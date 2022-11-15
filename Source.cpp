@@ -32,6 +32,7 @@ int main()
         cout << "Welcome ADMIN" << a1.getaccessPhone() << "!" << endl;
         OpenFileAdmin();
         Admin *admin;
+        Admin admin1;
         int choice;
         do
         {
@@ -40,7 +41,9 @@ int main()
             switch (choice)
             {
             case 1:
-                admin->searchPhoneAccess(a1);
+                openFileAccess();
+                admin1.searchPhoneAccess(a1);
+                saveFileAccess();
                 break;
             case 2:
                 system("cls");
@@ -84,6 +87,7 @@ int main()
                 SaveFileTransac();
                 break;
             case 10:
+                system("cls");
                 cout << "Saving data to file ";
                 delayDot(5);
                 cout << endl;
@@ -102,6 +106,7 @@ int main()
     }
     else if (a1.getRoleByaccessPhone(a1.getaccessPhone()) == "user")
     {
+        cout << endl;
         cout << "Welcome USER" << a1.getaccessPhone() << "!" << endl;
         openFileUser();
         User *user;

@@ -49,7 +49,7 @@ void userMenu()
     cout << "+----------------------------------------------------------------------+" << endl;
     cout << "|                      USER MANANGEMENT PROGRAM                        |" << endl;
     cout << "+----------------------------------------------------------------------+" << endl;
-    cout << "|    1.  Display       |      2. Deposit            |     3. Withdraw  |" << endl;
+    cout << "|    1.  Display       |     2. Deposit             |  3. Withdraw     |" << endl;
     cout << "|    4. Transaction    |     5. Trans's history     |  6. Exit & Save  |" << endl;
     cout << "+----------------------------------------------------------------------+" << endl;
     cout << "Enter your option: ";

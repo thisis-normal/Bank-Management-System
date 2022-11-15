@@ -215,6 +215,7 @@ public:
                 if (amount < 0)
                 {
                     cout << "Invalid amount" << endl;
+                    count++;
                     break;
                 }
                 else
@@ -251,11 +252,13 @@ public:
                 if (amount < 0)
                 {
                     cout << "Invalid amount" << endl;
+                    count++;
                     break;
                 }
                 else if (amount > stoi(bankBalance[i]))
                 {
                     cout << "Not enough money" << endl;
+                    count++;
                     break;
                 }
                 else

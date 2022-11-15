@@ -73,13 +73,8 @@ public:
             cout << "Phone or password cannot be empty" << endl;
             exit(0);
         }
-        if (accessPhone.length() != 10)
-        {
-            cout << endl;
-            cout << "Phone number must be 10 digits" << endl;
-            exit(0);
-        }
-        // validate accessPhone
+
+        // validate phone number
         for (int i = 0; i < accessPhone.length(); i++)
         {
             if (accessPhone[i] < '0' || accessPhone[i] > '9')
@@ -88,6 +83,13 @@ public:
                 cout << "Phone number must be a number" << endl;
                 exit(0);
             }
+        }
+        // validate phone length
+        if (accessPhone.length() != 10)
+        {
+            cout << endl;
+            cout << "Phone number must be 10 digits" << endl;
+            exit(0);
         }
         // check if sign in not successfully
         int count = 0;

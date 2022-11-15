@@ -212,11 +212,19 @@ public:
                 cout << "Enter amount to deposit: ";
                 int amount;
                 cin >> amount;
-                bankBalance[i] = to_string(stoi(bankBalance[i]) + amount);
-                count++;
-                cout << "Deposit successfully!" << endl;
-                cout << "Your new balance: " << bankBalance[i] << endl;
-                break;
+                if (amount < 0)
+                {
+                    cout << "Invalid amount" << endl;
+                    break;
+                }
+                else
+                {
+                    bankBalance[i] = to_string(stoi(bankBalance[i]) + amount);
+                    cout << "Deposit successfully" << endl;
+                    cout << "Your new balance: " << bankBalance[i] << endl;
+                    count++;
+                    break;
+                }
             }
         }
         if (count == 0)
@@ -240,25 +248,31 @@ public:
                 cout << "Enter amount to withdraw: ";
                 int amount;
                 cin >> amount;
-                if (amount > stoi(bankBalance[i]))
+                if (amount < 0)
                 {
-                    cout << "Your balance is not enough" << endl;
+                    cout << "Invalid amount" << endl;
+                    break;
+                }
+                else if (amount > stoi(bankBalance[i]))
+                {
+                    cout << "Not enough money" << endl;
+                    break;
                 }
                 else
                 {
                     bankBalance[i] = to_string(stoi(bankBalance[i]) - amount);
-                    count++;
-                    cout << "Withdraw successfully!" << endl;
+                    cout << "Withdraw successfully" << endl;
                     cout << "Your new balance: " << bankBalance[i] << endl;
+                    count++;
+                    break;
                 }
-                break;
             }
         }
         if (count == 0)
         {
             cout << "Cannot find phone number" << endl;
         }
-    };
+    }
     void Transaction(BankSys &bs)
     {
         // check if both phone number is existed

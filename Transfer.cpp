@@ -73,12 +73,3 @@ public:
         }
     }
 };
-// int main()
-// {
-//     OpenFileTransac();
-//     Transfer transac;
-//     transac.display(giverPhone, receiverPhone, amount);
-//     transac.transHistory(giverPhone, receiverPhone, amount);
-//     SaveFileTransac();
-//     return 0;
-// }

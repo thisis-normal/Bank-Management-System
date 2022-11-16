@@ -22,7 +22,7 @@ Dữ liệu lưu lịch sử chuyển khoản sẽ đc lưu ở file transaction
 
 Dữ liệu lưu tài khoản sẽ đc lưu ở file Account.txt
 
-Dữ liệu lưu thông tin cá nhân của admin & user sẽ đc lưu ở file Access.txt
+Dữ liệu lưu thông tin cá nhân của admin & user sẽ đc lưu ở file Data.txt
 
 Config C++11 in VSCode: https://stackoverflow.com/questions/53995830/compiling-c11-in-visual-studio-code
 Config C++11 in DevC/C++: https://stackoverflow.com/questions/16951376/how-to-change-mode-from-c98-mode-in-dev-c-to-a-mode-that-supports-c0x-ran

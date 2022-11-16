@@ -43,7 +43,7 @@ int main()
             case 1:
                 system("cls");
                 openFileAccess();
-                admin1.searchPhoneAccess(a1);
+                admin1.validateCreate(a1);
                 saveFileAccess();
                 break;
             case 2:
@@ -124,15 +124,15 @@ int main()
                 break;
             case 2:
                 system("cls");
-                user->depositMoney(&a1);
+                user->deposit(&a1);
                 break;
             case 3:
                 system("cls");
-                user->withdrawMoney(&a1);
+                user->withdraw(&a1);
                 break;
             case 4:
                 system("cls");
-                user->tranferMoney(&a1, bank);
+                user->tranfer(&a1, bank);
                 break;
             case 5:
                 system("cls");

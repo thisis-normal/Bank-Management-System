@@ -3,7 +3,7 @@
 #pragma once
 void openFileUser()
 {
-    ifstream file("Access.txt");
+    ifstream file("Data.txt");
     if (file.is_open())
     {
         string line;
@@ -31,7 +31,7 @@ void openFileUser()
 }
 void saveFileUser()
 {
-    ofstream myfile("Access.txt");
+    ofstream myfile("Data.txt");
     for (int i = 0; i < maxrow; i++)
     {
         if (bankName[i] == "\0")
@@ -77,7 +77,7 @@ public:
         }
     }
 
-    void depositMoney(AccessControl *access)
+    void deposit(AccessControl *access)
     {
         string phone = access->getaccessPhone();
         for (int i = 0; i < maxrow; i++)
@@ -104,7 +104,7 @@ public:
             }
         }
     }
-    void withdrawMoney(AccessControl *access)
+    void withdraw(AccessControl *access)
     {
         string phone = access->getaccessPhone();
         for (int i = 0; i < maxrow; i++)
@@ -152,7 +152,7 @@ public:
             }
         }
     }
-    void tranferMoney(AccessControl *access, BankSys &bs)
+    void tranfer(AccessControl *access, BankSys &bs)
     {
         // check if both phone number exist
         string giverPhone = access->getaccessPhone();

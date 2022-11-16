@@ -5,7 +5,7 @@ using namespace std;
 
 void OpenFileAdmin()
 {
-    ifstream file("Access.txt");
+    ifstream file("Data.txt");
     if (file.is_open())
     {
         string line;
@@ -28,7 +28,7 @@ void OpenFileAdmin()
 }
 void SaveFileAdmin()
 {
-    ofstream myfile("Access.txt");
+    ofstream myfile("Data.txt");
     for (int i = 0; i < maxrow; i++)
     {
         if (bankName[i] == "\0")
@@ -74,7 +74,7 @@ public:
             }
         }
     }
-    void searchPhoneAccess(AccessControl &ac)
+    void validateCreate(AccessControl &ac)
     {
         string accessPhone;
         cout << "Enter phone number: ";

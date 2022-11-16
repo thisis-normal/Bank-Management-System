@@ -13,9 +13,9 @@ Hệ thống được thực hiện như sau:
 
 Chia hệ thống thành 2 cấp: User & Admin, mỗi cấp sẽ có chức năng khác nhau (admin sẽ có nhiều chức năng hơn user)
 
-Khi chạy chương trình sẽ yêu cầu đăng nhập, ta lấy thông tin đăng nhập trong file Access.txt
+Khi chạy chương trình sẽ yêu cầu đăng nhập, ta lấy thông tin đăng nhập trong file Account.txt
 
-Sau khi đăng nhập sẽ test từng tính năng, nếu k biết có thể tra gg tên chức năng.
+Sau khi đăng nhập sẽ test từng tính năng, nếu không biết có thể tra gg tên của chức năng.
 
 Dữ liệu lưu lịch sử chuyển khoản sẽ đc lưu ở file transaction.txt
 
@@ -25,3 +25,12 @@ Dữ liệu lưu thông tin cá nhân của admin & user sẽ đc lưu ở file 
 
 Config C++11 in VSCode: https://stackoverflow.com/questions/53995830/compiling-c11-in-visual-studio-code
 Config C++11 in DevC/C++: https://stackoverflow.com/questions/16951376/how-to-change-mode-from-c98-mode-in-dev-c-to-a-mode-that-supports-c0x-ran
+
+Phương án mở rộng chương trình trong tương lai:
+
+- Tối ưu hóa code
+- Tối ưu hóa giao diện
+- Tối ưu hoá dữ liệu lưu trữ
+- Tính năng đổi mật khẩu/ quên mật khẩu
+- Tính năng lưu ngày tháng năm khi chuyển khoản
+- Tính năng đăng ký tài khoản mới mà không cần phải vào chương trình với quyền admin

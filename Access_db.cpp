@@ -1,7 +1,7 @@
 #include "Access.cpp"
 void openFileAccess()
 {
-    ifstream file("Access.txt");
+    ifstream file("Account.txt");
     if (file.is_open())
     {
         string line;
@@ -28,7 +28,7 @@ void openFileAccess()
 void saveFileAccess()
 {
     // save file
-    ofstream myfile("Access.txt");
+    ofstream myfile("Account.txt");
     for (int i = 0; i < maxrow; i++)
     {
         if (AccessPhone[i] == "\0")

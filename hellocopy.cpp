@@ -1,241 +1,316 @@
-#include <bits/stdc++.h>
-#include <chrono>
-using namespace std;
-const int maxrow = 20;
-string EmpName[maxrow] = {};
-string EmpID[maxrow] = {};
-void Add()
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <windows.h>
+#include <math.h>
+
+const double PI = 3.141592653589793;
+const float x0 = 40.0;
+const float yy = 19.0;
+const float a = 15.0;
+const float b = 7.0;
+
+short marginLeft = 25;
+short marginDown = 3;
+int speed = 20;
+
+short frameIn[25][35][78];
+short frame[50][35][78];
+
+void TextColor(short color)
 {
-    string name;
-    string empID;
-    cout << "Name: ";
-    getline(cin >> ws, name);
-    cout << "Empno: ";
-    getline(cin, empID);
-    if (name.empty() || empID.empty())
-    {
-        cout << "Name or EmpID cannot be empty" << endl;
-        return;
-    }
-    for (int i = 0; i < maxrow; i++)
-    {
-        if (EmpName[i].empty())
-        {
-            EmpName[i] = name;
-            EmpID[i] = empID;
-            cout << "Added successfully" << endl;
-            return;
-        }
-    }
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
 }
-void Display()
+
+void gotoXY(int x, int y)
 {
-    int count = 0;
-    cout << "Here is the list: " << endl;
-    printf("+---------------------------------------------------------------------+\n");
-    printf("| %-10s | %-13s | %-15s |\n", "Order Num", "Employee's ID", "Employee's Name");
-    for (int i = 0; i < maxrow; i++)
-    {
-        if (EmpID[i] != "\0")
-        {
-            printf("| %-10d | %-13s | %-15s |", (i + 1), EmpID[i].c_str(), EmpName[i].c_str());
-            cout << endl;
-            count++;
-        }
-    }
-    cout << "======================" << endl;
-    cout << "Total records: " << count << endl;
-    if (count == 0)
-    {
-        cout << "==> No records found" << endl;
-    }
+    COORD coord;
+    coord.X = x;
+    coord.Y = y;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
-void Search()
-{
-    string ID;
-    cout << "ID: ";
-    getline(cin >> ws, ID);
-    int count = 0;
-    cout << "Here is the results" << endl;
-    cout << " No. |  Name      |   EmpID    " << endl;
-    for (int i = 0; i < maxrow; i++)
-    {
-        if (EmpID[i] == ID)
-        {
-            cout << "   " << i + 1 << " | " << EmpName[i] << "          |      " << EmpID[i] << endl;
-            count++;
-        }
-    }
-    if (count == 0)
-    {
-        cout << "==> No records found" << endl;
-    }
-}
-void Update()
-{
-    string ID;
-    cout << "ID: ";
-    getline(cin >> ws, ID);
-    int count = 0;
-    cout << "Here is the results" << endl;
-    cout << " No. |  Name      |   EmpID    " << endl;
-    for (int i = 0; i < maxrow; i++)
-    {
-        if (EmpID[i] == ID)
-        {
-            cout << "   " << i + 1 << " | " << EmpName[i] << "          |      " << EmpID[i] << endl;
-            count++;
-        }
-    }
-    if (count == 0)
-    {
-        cout << "==> No records found" << endl;
-    }
-    else
-    {
-        string name;
-        cout << "Name: ";
-        getline(cin >> ws, name);
-        for (int i = 0; i < maxrow; i++)
-        {
-            if (EmpID[i] == ID)
-            {
-                EmpName[i] = name;
-            }
-        }
-        cout << "Updated successfully" << endl;
-    }
-}
-void Delete()
-{
-    string ID;
-    cout << "ID: ";
-    getline(cin >> ws, ID);
-    int count = 0;
-    cout << "Here is the results" << endl;
-    cout << " No. |  Name      |   EmpID    " << endl;
-    for (int i = 0; i < maxrow; i++)
-    {
-        if (EmpID[i] == ID)
-        {
-            cout << "   " << i + 1 << " | " << EmpName[i] << "          |      " << EmpID[i] << endl;
-            count++;
-        }
-    }
-    if (count == 0)
-    {
-        cout << "==> No records found" << endl;
-    }
-    else
-    {
-        for (int i = 0; i < maxrow; i++)
-        {
-            if (EmpID[i] == ID)
-            {
-                EmpName[i] = "";
-                EmpID[i] = "";
-                cout << "Deleted successfully" << endl;
-                break; // only delete the first record
-            }
-        }
-    }
-}
-void openFile()
-{
-    ifstream file("data.txt");
-    if (file.is_open())
-    {
-        string line;
-        int i = 0;
-        while (getline(file, line))
-        {
-            // insert data into array, split by comma
-            EmpName[i] = line.substr(0, line.find(","));
-            EmpID[i] = line.substr(line.find(",") + 1);
-            i++;
-        }
-    }
-    file.close();
-}
-void saveFile()
-{
-    ofstream myfile("data.txt");
-    for (int i = 0; i < maxrow; i++)
-    {
-        if (EmpID[i] == "\0")
-        {
-            break;
-        }
-        else
-        {
-            myfile << EmpID[i] << "," << EmpName[i] << endl;
-        }
-    }
-}
-void Menu()
-{
-    printf("+---------------------------------------------------------------------+\n");
-    printf("|		            BANK MANAGEMENT PROGRAM                           |\n");
-    printf("+---------------------------------------------------------------------+\n");
-    printf("|1.Create |2. Update |3.Delete |4.Search |5.Display |6. Exit and save |\n");
-    printf("+---------------------------------------------------------------------+\n");
-    cout << "Enter your option: ";
-}
+
+void getHeartShapeIn(short frameIndex, short k);
+void getHeartShape(short frameIndex, short k, short value);
+void frameInitialize();
+void heartIn();
+void heartTransform();
+void heartStart();
+void heartLoop();
 
 int main()
 {
-    cout << "MENU: " << endl;
-    int option;
-    fstream myfile;
-    openFile();
+    srand(time(0));
+    frameInitialize();
+    system("cls");
+    heartStart();
+    while (1)
+    {
+        heartLoop();
+    }
+    return 0;
+}
+
+void getHeartShape(short frameIndex, short k, short value)
+{
+    for (short x = 1; x < 78; x++)
+    {
+        double coordinate1 = yy - b * (0.35 * fabs((x - x0) / a) - cos(k * PI / 12.0) - 0.5 * sqrt(4.0 * pow(cos(k * PI / 12.0), 2) - 3.51 * pow((x - x0) / a, 2.0) - 2.8 * fabs((x - x0) / a) * cos(k * PI / 12.0) - 8.0 * ((x - x0) / a) * sin(k * PI / 12.0)));
+        double coordinate2 = yy - b * (0.35 * fabs((x - x0) / a) - cos(k * PI / 12.0) + 0.5 * sqrt(4.0 * pow(cos(k * PI / 12.0), 2) - 3.51 * pow((x - x0) / a, 2.0) - 2.8 * fabs((x - x0) / a) * cos(k * PI / 12.0) - 8.0 * ((x - x0) / a) * sin(k * PI / 12.0)));
+        short y1 = (short)round(coordinate1);
+        short y2 = (short)round(coordinate2);
+        if (y1 != 0 && y2 != 0)
+        {
+            frame[frameIndex][y1][x] = value;
+            frame[frameIndex][y2][x] = value;
+        }
+    }
+}
+
+void getHeartShapeIn(short frameIndex, short k)
+{
+    for (short x = 1; x < 78; x++)
+    {
+        double coordinate1 = yy - b * (0.35 * fabs((x - x0) / a) - cos(k * PI / 12.0) - 0.5 * sqrt(4.0 * pow(cos(k * PI / 12.0), 2) - 3.51 * pow((x - x0) / a, 2.0) - 2.8 * fabs((x - x0) / a) * cos(k * PI / 12.0) - 8.0 * ((x - x0) / a) * sin(k * PI / 12.0)));
+        double coordinate2 = yy - b * (0.35 * fabs((x - x0) / a) - cos(k * PI / 12.0) + 0.5 * sqrt(4.0 * pow(cos(k * PI / 12.0), 2) - 3.51 * pow((x - x0) / a, 2.0) - 2.8 * fabs((x - x0) / a) * cos(k * PI / 12.0) - 8.0 * ((x - x0) / a) * sin(k * PI / 12.0)));
+        short y1 = (short)round(coordinate1);
+        short y2 = (short)round(coordinate2);
+        if (y1 != 0 && y2 != 0)
+        {
+            frameIn[frameIndex][y1][x] = 1;
+            frameIn[frameIndex][y2][x] = 1;
+        }
+    }
+}
+
+void heartIn()
+{
+    for (int k = 0; k < 25; k++)
+        for (int i = 0; i <= k; i++)
+            getHeartShapeIn(k, i);
+}
+
+void heartTransform()
+{
+    for (short k = 0; k < 25; k++)
+    {
+        for (short i = 0; i < 35; i++)
+            for (short j = 0; j < 78; j++)
+                frame[k][i][j] = frameIn[24][i][j];
+        for (short i = 24; i > 23 - k; i--)
+            getHeartShape(k, i, 2);
+    }
+    for (short k = 25; k < 50; k++)
+        for (short i = 0; i < 35; i++)
+            for (short j = 0; j < 78; j++)
+                frame[k][i][j] = frame[49 - k][i][j];
+}
+
+void printPointA(short frameIndex, short x, short y);
+
+void frameInitialize()
+{
+    for (short k = 0; k < 25; k++)
+        for (short i = 0; i < 35; i++)
+            for (short j = 0; j < 78; j++)
+                frameIn[k][i][j] = 0;
+    heartIn();
+    heartTransform();
+}
+
+void heartStart()
+{
+    TextColor(5);
+    for (short k = 0; k < 25; k++)
+    {
+        for (short i = 0; i < 35; i++)
+            for (short j = 0; j < 78; j++)
+                if (frameIn[k][i][j] == 1)
+                {
+                    gotoXY(j + marginLeft, i + marginDown);
+                    printf("%c", (rand() % 2) ? 3 : '.');
+                }
+        Sleep(speed);
+    }
+}
+
+void heartLoop()
+{
+    for (short t = 0; t < 8; t++)
+    {
+        for (short i = 0; i < 35; i++)
+            for (short j = 0; j < 78; j++)
+                if (frame[24][i][j] == 1)
+                {
+                    gotoXY(j + marginLeft, i + marginDown);
+                    printf("%c", (rand() % 2) ? 3 : '.');
+                }
+        Sleep(speed);
+    }
+
+    short previousColor = 5;
+    short nextColor;
+    char previousChar = 3;
+    char nextChar;
     do
     {
-        Menu();
-        cin >> option;
-        switch (option)
-        {
-        case 1:
-            Add();
-            break;
-        case 2:
-            Update();
-            break;
-        case 3:
-            Delete();
-            break;
-        case 4:
-            Search();
-            break;
-        case 5:
-            Display();
-            break;
-        case 6:
-            cout << "Do you want to exit? (Y/N): ";
-            char c;
-            cin >> c;
-            if (c == 'Y' || c == 'y')
-            {
-                cout << "Saved successfully" << endl;
-                exit(0);
-            }
-            else
-            {
-                break;
-            }
-        default:
-            cout << "SAI ROI`" << endl;
-            break;
-        }
-    } while (option != 7);
-    saveFile();
-    cout << "Saving ";
-    // delay 1 second
-    for (int i = 1; i <= 4; i++)
+        nextColor = rand() % 5 + 2;
+    } while (nextColor == previousColor);
+    do
     {
-        cout << ".";
-        this_thread::sleep_for(chrono::milliseconds(700));
+        nextChar = rand() % 21 + 1;
+    } while (nextChar == previousChar || (nextChar > 6 && nextChar < 11) || nextChar == 13);
+
+    while (1)
+    {
+        for (short k = 0; k < 25; k++)
+        {
+            for (short i = 0; i < 35; i++)
+            {
+                for (short j = 0; j < 78; j++)
+                {
+                    if (frame[k][i][j] != 0)
+                    {
+                        gotoXY(j + marginLeft, i + marginDown);
+                        if (frame[k][i][j] == 1)
+                        {
+                            if (previousColor != 2)
+                            {
+                                TextColor(previousColor);
+                                printf("%c", (rand() % 2) ? '.' : previousChar);
+                            }
+                            else
+                            {
+                                TextColor(rand() % 8);
+                                printf("%c", (rand() % 2) ? '.' : previousChar);
+                            }
+                        }
+                        else
+                        {
+                            if (nextColor != 2)
+                            {
+                                TextColor(nextColor);
+                                printf("%c", (rand() % 2) ? '.' : nextChar);
+                            }
+                            else
+                            {
+                                TextColor(rand() % 8);
+                                printf("%c", (rand() % 2) ? '.' : nextChar);
+                            }
+                        }
+                    }
+                }
+            }
+            Sleep(speed);
+        }
+        for (short t = 0; t < 8; t++)
+        {
+            for (short i = 0; i < 35; i++)
+            {
+                for (short j = 0; j < 78; j++)
+                {
+                    if (frame[24][i][j] != 0)
+                    {
+                        gotoXY(j + marginLeft, i + marginDown);
+                        if (nextColor != 2)
+                        {
+                            TextColor(nextColor);
+                            printf("%c", (rand() % 2) ? '.' : nextChar);
+                        }
+                        else
+                        {
+                            TextColor(rand() % 8);
+                            printf("%c", (rand() % 2) ? '.' : nextChar);
+                        }
+                    }
+                }
+            }
+            Sleep(speed);
+        }
+        previousColor = nextColor;
+        previousChar = nextChar;
+        do
+        {
+            nextColor = rand() % 5 + 2;
+        } while (nextColor == previousColor);
+        do
+        {
+            nextChar = rand() % 21 + 1;
+        } while (nextChar == previousChar || (nextChar > 6 && nextChar < 11) || nextChar == 13);
+
+        for (short k = 25; k < 50; k++)
+        {
+            for (short i = 0; i < 35; i++)
+            {
+                for (short j = 0; j < 78; j++)
+                {
+                    if (frame[k][i][j] != 0)
+                    {
+                        gotoXY(j + marginLeft, i + marginDown);
+                        if (frame[k][i][j] == 2)
+                        {
+                            if (previousColor != 2)
+                            {
+                                TextColor(previousColor);
+                                printf("%c", (rand() % 2) ? '.' : previousChar);
+                            }
+                            else
+                            {
+                                TextColor(rand() % 8);
+                                printf("%c", (rand() % 2) ? '.' : previousChar);
+                            }
+                        }
+                        else
+                        {
+                            if (nextColor != 2)
+                            {
+                                TextColor(nextColor);
+                                printf("%c", (rand() % 2) ? '.' : nextChar);
+                            }
+                            else
+                            {
+                                TextColor(rand() % 8);
+                                printf("%c", (rand() % 2) ? '.' : nextChar);
+                            }
+                        }
+                    }
+                }
+            }
+            Sleep(speed);
+        }
+        for (short t = 0; t < 8; t++)
+        {
+            for (short i = 0; i < 35; i++)
+            {
+                for (short j = 0; j < 78; j++)
+                {
+                    if (frame[49][i][j] != 0)
+                    {
+                        gotoXY(j + marginLeft, i + marginDown);
+                        if (nextColor != 2)
+                        {
+                            TextColor(nextColor);
+                            printf("%c", (rand() % 2) ? '.' : nextChar);
+                        }
+                        else
+                        {
+                            TextColor(rand() % 8);
+                            printf("%c", (rand() % 2) ? '.' : nextChar);
+                        }
+                    }
+                }
+            }
+            Sleep(speed);
+        }
+        previousColor = nextColor;
+        previousChar = nextChar;
+        do
+        {
+            nextColor = rand() % 5 + 2;
+        } while (nextColor == previousColor);
+        do
+        {
+            nextChar = rand() % 21 + 1;
+        } while (nextChar == previousChar || (nextChar > 6 && nextChar < 11) || nextChar == 13);
     }
-    cout << endl;
-    cout << "Done";
-    return 0;
 }

@@ -3,7 +3,7 @@
 #pragma once
 void openFileUser()
 {
-    ifstream file("humanDB.txt");
+    ifstream file("Access.txt");
     if (file.is_open())
     {
         string line;
@@ -31,7 +31,7 @@ void openFileUser()
 }
 void saveFileUser()
 {
-    ofstream myfile("humanDB.txt");
+    ofstream myfile("Access.txt");
     for (int i = 0; i < maxrow; i++)
     {
         if (bankName[i] == "\0")

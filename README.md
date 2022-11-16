@@ -8,8 +8,9 @@
 
 ### System requirements: Your PC must have g++ compiler installed and C++11 or higher
 
-In this project, I split program into multiple file and include them in Source.cpp, so you just need gcc compiler then run the Source.cpp file
-Hệ thống được thực hiện như sau:
+### How to run: Open your terminal and run Source.cpp file
+
+Hệ thống được mô tả quy trình thực hiện như sau:
 
 Chia hệ thống thành 2 cấp: User & Admin, mỗi cấp sẽ có chức năng khác nhau (admin sẽ có nhiều chức năng hơn user)
 

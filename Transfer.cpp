@@ -49,7 +49,7 @@ public:
         {
             if (giverPhone[i] == phone)
             {
-                cout << giverPhone[i] << " " << receiverPhone[i] << " " << amount[i] << endl;
+                cout << setw(20) << giverPhone[i] << setw(20) << receiverPhone[i] << setw(20) << amount[i] << endl;
                 count++;
             }
         }
@@ -57,6 +57,11 @@ public:
         {
             cout << "===> No transaction history" << endl;
         }
+    }
+    void transferHeader()
+    {
+        cout << "+------------------------------------------------------------+" << endl;
+        cout << setw(20) << "Sender" << setw(20) << "Receiver" << setw(20) << "Amount" << endl;
     }
     void display(string giverPhone[], string receiverPhone[], string amount[])
     {

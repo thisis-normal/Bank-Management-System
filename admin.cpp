@@ -84,19 +84,29 @@ public:
             if (accessPhone == AccessPhone[i])
             {
                 cout << "accessPhone number is existed" << endl;
-                cout << "You can create new information for this accessPhone number" << endl;
-                Create(accessPhone);
+                cout << "Do you want to create new information of this account? (Y/N): ";
+                char choice;
+                cin >> choice;
+                if (choice == 'Y' || choice == 'y')
+                {
+                    Create(accessPhone);
+                    cout << "Create successfully" << endl;
+                }
+                else
+                {
+                    cout << "Create aborted" << endl;
+                }
                 return;
             }
         }
-        cout << "accessPhone number is not existed" << endl;
-        cout << "Do you want to create new accessPhone number? (y/n): ";
+        cout << "Phone number is not existed in our database" << endl;
+        cout << "Do you want to create new account with this number? (y/n): ";
         string choice;
         cin >> choice;
         if (choice == "y" || choice == "Y")
         {
             cin.ignore();
-            ac.signUp();
+            ac.signUp(accessPhone);
             ac.validateSignUp();
         }
     }

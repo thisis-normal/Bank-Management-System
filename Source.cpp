@@ -28,6 +28,7 @@ int main()
     if (a1.getRoleByaccessPhone(a1.getaccessPhone()) == "admin")
     {
         delayDot(2);
+        system("cls");
         cout << endl;
         cout << "Welcome ADMIN" << a1.getaccessPhone() << "!" << endl;
         OpenFileAdmin();
@@ -45,6 +46,7 @@ int main()
                 openFileAccess();
                 admin1.validateCreate(a1);
                 saveFileAccess();
+                cout << endl;
                 break;
             case 2:
                 system("cls");
@@ -60,32 +62,41 @@ int main()
             case 4:
                 system("cls");
                 admin->Update();
+                cout << endl;
                 break;
             case 5:
                 system("cls");
                 admin->Delete();
+                cout << endl;
                 break;
             case 6:
                 system("cls");
                 admin->Deposit();
+                cout << endl;
                 break;
             case 7:
                 system("cls");
                 admin->Withdraw();
+                cout << endl;
                 break;
             case 8:
                 system("cls");
                 admin->Transaction(bank);
+                cout << endl;
                 break;
             case 9:
                 OpenFileTransac();
                 system("cls");
                 admin = &transact;
-                cout << "Enter number of transaction: ";
+                cout << "Enter phone number need to statement: ";
                 cin.ignore();
                 getline(cin, phone);
+                cout << "Here is the statement of " << phone << endl
+                     << endl;
+                transact.transferHeader();
                 admin->transactHistory(giverPhone, receiverPhone, amount, phone);
                 SaveFileTransac();
+                cout << endl;
                 break;
             case 10:
                 system("cls");
@@ -100,6 +111,7 @@ int main()
                 break;
             default:
                 cout << "Invalid choice!" << endl;
+                cout << endl;
                 break;
             }
         } while (choice != 10);
@@ -107,6 +119,7 @@ int main()
     }
     else if (a1.getRoleByaccessPhone(a1.getaccessPhone()) == "user")
     {
+        system("cls");
         cout << endl;
         cout << "Welcome USER" << a1.getaccessPhone() << "!" << endl;
         openFileUser();
@@ -121,28 +134,35 @@ int main()
             case 1:
                 system("cls");
                 user->displayWtPhone(&a1);
+                cout << endl;
                 break;
             case 2:
                 system("cls");
                 user->deposit(&a1);
+                cout << endl;
                 break;
             case 3:
                 system("cls");
                 user->withdraw(&a1);
+                cout << endl;
                 break;
             case 4:
                 system("cls");
                 user->tranfer(&a1, bank);
+                cout << endl;
                 break;
             case 5:
                 system("cls");
                 OpenFileTransac();
                 system("cls");
                 user = &transact;
-                cout << "Transaction history: " << endl;
+                cout << "Transaction history of USER" << a1.getaccessPhone() << endl;
+                cout << endl;
                 phone = a1.getaccessPhone();
+                transact.transferHeader();
                 user->transactHistory(giverPhone, receiverPhone, amount, phone);
                 SaveFileTransac();
+                cout << endl;
                 break;
             case 6:
                 system("cls");
@@ -154,9 +174,11 @@ int main()
                 cout << "1. Nguyen Huu Thuong" << endl;
                 cout << "2. Nguyen Thanh Chung" << endl;
                 cout << "3. Pham Dat Thanh Duy" << endl;
+                cout << endl;
                 break;
             default:
                 cout << "Invalid option, please try again" << endl;
+                cout << endl;
                 break;
             }
         } while (choice != 6);

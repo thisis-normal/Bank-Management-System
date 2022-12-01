@@ -122,10 +122,11 @@ public:
             exit(0);
         }
     }
-    void signUp()
+    void signUp(string phone)
     {
-        cout << "accessPhone: ";
-        getline(cin, accessPhone);
+        // cout << "accessPhone: ";
+        // getline(cin, accessPhone);
+        accessPhone = phone;
         cout << "Password: ";
         getline(cin, password);
         cout << "Role (admin or user):  ";
@@ -170,14 +171,15 @@ public:
             }
         }
         // check if accessPhone number is already existed in text file
-        for (int i = 0; i < maxrow; i++)
-        {
-            if (accessPhone == AccessPhone[i])
-            {
-                cout << "accessPhone number is already existed" << endl;
-                return;
-            }
-        }
+        // aldready existed in admin.cpp
+        // for (int i = 0; i < maxrow; i++)
+        // {
+        //     if (accessPhone == AccessPhone[i])
+        //     {
+        //         cout << "accessPhone number is already existed" << endl;
+        //         return;
+        //     }
+        // }
         for (int i = 0; i < maxrow; i++)
         {
             if (AccessPhone[i] == "\0")
